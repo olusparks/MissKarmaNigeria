@@ -86,7 +86,7 @@
                     </div>
                     <div class="col-xs-10 text-right menu-1">
                         <ul>
-                            <li class="active"><a href="index.html">Home</a></li>
+                            <li class="active"><a href="index.aspx">Home</a></li>
                             <li><a href="about.html">Story</a></li>
                             <li class="has-dropdown">
                                 <a href="services.html">Services</a>
@@ -106,7 +106,7 @@
                                     <li><a href="#">jQuery</a></li>
                                 </ul>
                             </li>
-                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="contact.aspx">Contact</a></li>
                         </ul>
                     </div>
                 </div>
