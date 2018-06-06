@@ -18,6 +18,8 @@ public class mkn_context : DbContext
     }
 
     public DbSet<mkncontactus> ContactUs { get; set; }
+    public DbSet<mknRegistration> Registration { get; set; }
+
     protected override void OnModelCreating(DbModelBuilder modelBuilder)
     {
         modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
