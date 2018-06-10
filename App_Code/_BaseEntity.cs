@@ -18,8 +18,7 @@ public class _BaseEntity : _AuditEntity
 
     public _BaseEntity()
     {
-        //
-        // TODO: Add constructor logic here
-        //
+        IsActive = true;
+        IsDeleted = false;
     }
 }

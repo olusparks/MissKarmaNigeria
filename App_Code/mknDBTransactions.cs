@@ -9,6 +9,7 @@ using System.Web;
 public class mknDBTransactions
 {
     private static mkn_context context = new mkn_context();
+    private static UnitOfWork UoW = new UnitOfWork(context);
 
     public mknDBTransactions()
     {
@@ -20,6 +21,9 @@ public class mknDBTransactions
     #region Registration
     public static List<mknRegistration> GetRegistrationList()
     {
+        //Implementing UnitOfWork
+        //UoW.Registration.GetAll().Where(r => r.IsActive == true && r.IsDeleted == false).ToList();
+
         List<mknRegistration> mknRegister = new List<mknRegistration>(); 
         try
         {
@@ -32,8 +36,13 @@ public class mknDBTransactions
         return mknRegister;
     }
 
+
+
     public static mknRegistration GetRegistrationById(int id)
     {
+        //Implementing UnitOfWork
+        //UoW.Registration.Find(r => r.ID == id & r.IsActive == true && r.IsDeleted == false).FirstOrDefault();
+
         mknRegistration mknRegister = null;
         try
         {
