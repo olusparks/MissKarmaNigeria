@@ -1,5 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/pages/mknmaster.master" AutoEventWireup="true" CodeFile="Registration.aspx.cs" Inherits="pages_Registration" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+
 <asp:Content ContentPlaceHolderID="headerBanner" runat="server">
     <header id="fh5co-header" class="fh5co-cover fh5co-cover-sm" role="banner" style="background-image: url(../images/img_bg_mkn1.jpg);">
         <div class="overlay"></div>
@@ -33,6 +35,9 @@
         </div>
 
         <form action="#" runat="server">
+
+            <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+
             <div class="container">
                 <div class="row" runat="server" id="RegistrationAdd">
                     <div class="col-md-12 col-sm-12 animate-box">
@@ -94,6 +99,14 @@
                             <div class="col-md-12">
                                 <label for="image">Image</label>
                                 <asp:FileUpload ID="imageUpload" runat="server" class="form-control" />
+                                <%--<input type="text" id="subject" class="form-control" placeholder="Your subject of this message">--%>
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label for="image">Image</label>
+                                <ajaxToolkit:AjaxFileUpload ID="ajxUpload"  Mode="Auto" MaximumNumberOfFiles="3" MaxFileSize="3072" runat="server"  AllowedFileTypes="png, jpeg, jpg" OnUploadCompleteAll="ajxUpload_UploadCompleteAll" OnUploadComplete="ajxUpload_UploadComplete"/>
                                 <%--<input type="text" id="subject" class="form-control" placeholder="Your subject of this message">--%>
                             </div>
                         </div>
@@ -317,4 +330,8 @@
             </div>
         </footer>
     </div>
+
+
 </asp:Content>
+
+

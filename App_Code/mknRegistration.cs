@@ -13,8 +13,6 @@ public class mknRegistration : _BaseEntity
     public string Address { get; set; }
     public double Height { get; set; }
     public double Weight { get; set; }
-    public string ImageLocation { get; set; }
-    public byte ImageFile { get; set; }
     public DateTime DOB { get; set; }
     public mknRegistration()
     {

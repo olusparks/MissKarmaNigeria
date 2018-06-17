@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,6 +8,7 @@ using System.Web.UI.WebControls;
 
 public partial class pages_Registration : System.Web.UI.Page
 {
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -39,6 +41,25 @@ public partial class pages_Registration : System.Web.UI.Page
         AlertContainer.Visible = true;
     }
 
+    public void InsertImage(List<byte[]> imgList)
+    {
+
+        HttpPostedFile postedFile = null;
+        foreach (var item in imgList)
+        {
+            postedFile.InputStream.Read(item, 0, item.Length);
+
+            //Do the insert into DB here
+            mknDBTransactions.AddImageRegistration(new mknRegImage()
+            {
+                ImageFile = item,
+                ImageExtenstion = "png"
+            });
+        }
+        
+    }
+
+
     public void BindGrid()
     {
         try
@@ -52,6 +73,7 @@ public partial class pages_Registration : System.Web.UI.Page
             throw new Exception(ex.Message);
         }
     }
+
     #endregion
 
     protected void btnSubmit_Click(object sender, EventArgs e)
@@ -84,6 +106,7 @@ public partial class pages_Registration : System.Web.UI.Page
                 txtWeight.Text = string.Empty;
                 #endregion
 
+                InsertImage(imgList);
                 //Display success message.
                 ShowSuccessMessage();
             }
@@ -205,5 +228,20 @@ public partial class pages_Registration : System.Web.UI.Page
         {
             ShowErrorMessage(ex);
         }
+    }
+
+    List<byte[]> imgList = new List<byte[]>();
+    protected void ajxUpload_UploadCompleteAll(object sender, AjaxControlToolkit.AjaxFileUploadCompleteAllEventArgs e)
+    {
+       
+    }
+
+    protected void ajxUpload_UploadComplete(object sender, AjaxControlToolkit.AjaxFileUploadEventArgs e)
+    {
+        //Dictionary<string, byte[]> images = new Dictionary<string, byte[]>();
+        //images.Add(e.FileName.ToLower(), e.GetContents());
+
+        imgList.Add(e.GetContents());
+        //ViewState["imgDictionary"] = imgList;
     }
 }

@@ -10,8 +10,6 @@ using System.Web;
 /// </summary>
 public class mkn_context : DbContext
 {
-    
-
     public mkn_context() : base("DBCS")
     {
         
@@ -19,6 +17,7 @@ public class mkn_context : DbContext
 
     public DbSet<mkncontactus> ContactUs { get; set; }
     public DbSet<mknRegistration> Registration { get; set; }
+    public DbSet<mknRegImage> mknRegImages { get; set; }
 
     protected override void OnModelCreating(DbModelBuilder modelBuilder)
     {

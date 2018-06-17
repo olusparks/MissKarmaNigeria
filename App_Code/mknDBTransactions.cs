@@ -124,4 +124,24 @@ public class mknDBTransactions
         return response;
     }
     #endregion
+
+    #region ImageRegistration
+    public static int AddImageRegistration(mknRegImage mknRegImg)
+    {
+        int response = 0;
+        try
+        {
+            mknRegImg.IsActive = true;
+            mknRegImg.IsDeleted = false;
+            context.mknRegImages.Add(mknRegImg);
+            response = context.SaveChanges();
+            return response;
+        }
+        catch (Exception ex)
+        {
+            //return response;
+            throw new Exception(ex.Message);
+        }
+    }
+    #endregion
 }
